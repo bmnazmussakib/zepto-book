@@ -1,0 +1,95 @@
+@import './variable';
+@import './class';
+
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: $body-font;
+    color: #4d4d4d;
+    background-color: #ffffff;
+    line-height: 28px;
+    font-weight: 400;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: #181818;
+    font-family: $title-font;
+  }
+  
+  p {
+    margin: 0;
+    padding: 0;
+    line-height: 28px;
+    font-size: 16px;
+  }
+  
+  input {
+    border: none;
+    outline: none;
+  }
+  
+  span {
+    display: inline-block;
+    color: #4d4d4d;
+  }
+  
+  a {
+    text-decoration: none;
+    display: inline-block;
+    color: #181818;
+    transition: all 0.4s;
+  }
+  
+  a:hover {
+    color: #181818;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  button {
+    border: none;
+    background-color: transparent;
+    transition: all 0.4s;
+  }
+  
+  img {
+    transition: all 0.4s;
+  }
+  
+  ::placeholder {
+    color: #4d4d4d;
+  }
+  
+  ::selection {
+    color: #ffffff;
+    background-color: #ff8008;
+  }
+  
+  
