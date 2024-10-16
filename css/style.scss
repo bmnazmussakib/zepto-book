@@ -17,6 +17,15 @@
         }
       }
 
+      .card-title{
+        font-size: 18px;
+      }
+
+      .card-text {
+        font-size: 14px;
+        color: $gray;
+      }
+
       .wishlist-icon {
         position: absolute;
         top: 20px;
@@ -30,6 +39,10 @@
         justify-content: center;
         color: $white;
       }
+    }
+
+    .card-footer {
+        padding: 0 0 1.5rem 0;
     }
   }
 }

@@ -2728,6 +2728,13 @@ img {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.all-books .book-card .card-body .card-title {
+  font-size: 18px;
+}
+.all-books .book-card .card-body .card-text {
+  font-size: 14px;
+  color: #6e6e6e;
+}
 .all-books .book-card .card-body .wishlist-icon {
   position: absolute;
   top: 20px;
@@ -2740,6 +2747,9 @@ img {
   align-items: center;
   justify-content: center;
   color: #ffffff;
+}
+.all-books .book-card .card-footer {
+  padding: 0 0 1.5rem 0;
 }
 
 .book-details-wrapper .book-information {
