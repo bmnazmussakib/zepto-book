@@ -1301,6 +1301,16 @@
   padding-right: 200px;
 }
 
+.commont-btn {
+  background: #ff8008;
+  color: #ffffff;
+  border: 1px solid #ff8008;
+}
+.commont-btn:hover {
+  border: 1px solid #ff8008;
+  color: #ff8008;
+}
+
 .bor-top {
   border-top: 1px solid rgba(21, 19, 20, 0.1019607843);
 }
@@ -2602,6 +2612,16 @@
   padding-right: 200px;
 }
 
+.commont-btn {
+  background: #ff8008;
+  color: #ffffff;
+  border: 1px solid #ff8008;
+}
+.commont-btn:hover {
+  border: 1px solid #ff8008;
+  color: #ff8008;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -2696,4 +2716,56 @@ img {
 ::selection {
   color: #ffffff;
   background-color: #ff8008;
+}
+
+.all-books .book-card .card-body {
+  position: relative;
+}
+.all-books .book-card .card-body .card-img img {
+  aspect-ratio: 5/7;
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.all-books .book-card .card-body .wishlist-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #ff8008;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.book-details-wrapper .book-information {
+  padding-left: 30px;
+}
+.book-details-wrapper .book-information .book-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.book-details-wrapper .book-information .info-list {
+  margin-bottom: 20px;
+}
+.book-details-wrapper .book-information .info-list .nav-item .nav-link {
+  padding: 0;
+  color: #292929;
+  text-transform: capitalize;
+  font-size: 13px;
+  font-weight: normal;
+}
+.book-details-wrapper .book-information .info-list .nav-item .nav-link span {
+  color: #ff8008;
+}
+.book-details-wrapper .book-information .description {
+  margin-bottom: 20px;
+}
+.book-details-wrapper .book-information .description p {
+  font-size: 14px;
+  font-weight: normal;
 }/*# sourceMappingURL=style.css.map */
