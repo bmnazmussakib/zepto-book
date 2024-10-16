@@ -3,14 +3,14 @@ const bookId = new URLSearchParams(window.location.search).get("id");
 
 // console.log(bookId)
 
-let getBookFromLocalDB = () => {
+const getBookFromLocalDB = () => {
   const bookList = localStorage.getItem("bookList")
     ? JSON.parse(localStorage.getItem("bookList"))
     : "";
   return bookList;
 };
 
-function fetchBookDetails() {
+const fetchBookDetails = () => {
   // fetch(`${API_URL}/${bookId}`)
   //     .then(response => response.json())
   //     .then(book => displayBookDetails(book))
@@ -40,6 +40,8 @@ const displayBookDeatails = (item) => {
     formats,
     download_count,
   } = item;
+
+  console.log(isInWishlist(id))
 
   const bookDetails = document.getElementById("book-details");
   bookDetails.innerHTML = `
@@ -90,8 +92,13 @@ const displayBookDeatails = (item) => {
                 </div>
 
                 <div class="btn-wrapper">
-                  <button class="btn commont-btn">
-                    <i class="fa-regular fa-heart"></i> Add To Wishlist
+                  <button class="btn commont-btn" onclick="toggleWishlist(${id})">
+                    
+                    ${
+                      isInWishlist(id)
+                        ? '<i class="fa-solid fa-heart"></i> Remove from Wishlist'
+                        : '<i class="fa-regular fa-heart"></i> Add To Wishlist'
+                    }
                   </button>
                 </div>
               </div>
@@ -99,5 +106,21 @@ const displayBookDeatails = (item) => {
           </div>
     `;
 };
+
+const toggleWishlist = (bookId) => {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    if (wishlist.includes(bookId)) {
+        wishlist = wishlist.filter(id => id !== bookId);
+    } else {
+        wishlist.push(bookId);
+    }
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    fetchBookDetails(); // Re-render the books with updated wishlist status
+}
+
+const isInWishlist = (bookId) => {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    return wishlist.includes(bookId);
+}
 
 fetchBookDetails();

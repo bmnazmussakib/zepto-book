@@ -2,18 +2,17 @@ const API_URL = "https://gutendex.com/books";
 let bookCache = {}; // Cache for storing books by page
 let currentPage = 1;
 
-let storeBookToLocalDB = (data) => {
+const storeBookToLocalDB = (data) => {
   localStorage.setItem("bookList", JSON.stringify(data));
 };
 
-let getBookFromLocalDB = () => {
+const getBookFromLocalDB = () => {
   const bookList = localStorage.getItem("bookList")
     ? JSON.parse(localStorage.getItem("bookList"))
     : "";
   return bookList;
 };
 
-// Fetch books from the API with pagination
 const fetchBooks = (page = 1) => {
   //   fetch(`${API_URL}?page=${page}`)
   //     .then((response) => response.json())
@@ -32,15 +31,25 @@ const fetchBooks = (page = 1) => {
   //   console.log(bookList)
 };
 
-// Display the books in the HomePage
 const displayBooks = (books) => {
   const bookList = document.getElementById("book-card-row");
   bookList.innerHTML = "";
 
   books?.map((item) => {
     console.log("item: ", item?.formats);
-    const { id, title, authors, formats } = item;
-
+    const {
+      id,
+      title,
+      authors,
+      translators,
+      subjects,
+      bookshelves,
+      languages,
+      copyright,
+      media_type,
+      formats,
+      download_count,
+    } = item;
     const bookDiv = document.createElement("div");
     bookDiv.classList.add("col-lg-3", "col-md-4", "col-sm-6", "col-12");
 
@@ -56,9 +65,13 @@ const displayBooks = (books) => {
                 </div>
                 <h5 class="card-title">${title}</h5>
                 <p class="card-text">Author: ${authors[0].name}</p>
-                <a href="#" class="wishlist-icon d-inline-block">
-                  <i class="fa-regular fa-heart"></i>
-                </a>
+                <button class="btn wishlist-icon" onclick="toggleWishlist(${id})">
+                ${
+                  isInWishlist(id)
+                    ? "<i class='fa-solid fa-heart'></i>"
+                    : "<i class='fa-regular fa-heart'></i>"
+                }
+                </button>
             
               </div>
               <div class="card-footer text-center border-0">
@@ -74,6 +87,22 @@ const displayBooks = (books) => {
     `;
     bookList.appendChild(bookDiv);
   });
+};
+
+const toggleWishlist = (bookId) => {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  if (wishlist.includes(bookId)) {
+    wishlist = wishlist.filter((id) => id !== bookId);
+  } else {
+    wishlist.push(bookId);
+  }
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  fetchBooks(currentPage); // Re-render the books with updated wishlist status
+};
+
+const isInWishlist = (bookId) => {
+  const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  return wishlist.includes(bookId);
 };
 
 // Initial fetch
