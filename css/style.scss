@@ -67,7 +67,7 @@
             padding: 0;
             color: $black;
             text-transform: capitalize;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: normal;
 
             span {
@@ -82,6 +82,11 @@
         p {
             font-size: 14px;
             font-weight: normal;
+
+            span {
+                color: $primary-color;
+                font-weight: 600;
+            }
         }
     }
     .btn-wrapper {

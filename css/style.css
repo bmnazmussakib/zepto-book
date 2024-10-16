@@ -2766,7 +2766,7 @@ img {
   padding: 0;
   color: #292929;
   text-transform: capitalize;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
 }
 .book-details-wrapper .book-information .info-list .nav-item .nav-link span {
@@ -2778,4 +2778,8 @@ img {
 .book-details-wrapper .book-information .description p {
   font-size: 14px;
   font-weight: normal;
+}
+.book-details-wrapper .book-information .description p span {
+  color: #ff8008;
+  font-weight: 600;
 }/*# sourceMappingURL=style.css.map */
