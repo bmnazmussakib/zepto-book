@@ -2720,6 +2720,7 @@ img {
 
 .navbar {
   background-color: #333;
+  padding: 15px 0;
 }
 .navbar .navbar-brand {
   color: #ff8008;
@@ -2731,7 +2732,7 @@ img {
   color: #ffffff;
   position: relative;
   padding: 3px 0;
-  font-size: 14px;
+  font-size: 15px;
   text-transform: capitalize;
 }
 .navbar .navbar-nav .nav-item .nav-link::after {
