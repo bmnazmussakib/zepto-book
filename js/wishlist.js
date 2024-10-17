@@ -1,5 +1,18 @@
 const API_URL = "https://gutendex.com/books";
 
+// Show loader during fetch
+function showLoader() {
+  const bookList = document.getElementById("book-card-row");
+  bookList.innerHTML =
+    '<div class="loader-wrapper"><span class="loader"></span></div>';
+}
+
+// Hide loader after fetching
+function hideLoader() {
+  const loader = document.querySelector(".loader");
+  if (loader) loader.remove();
+}
+
 const getBookFromLocalDB = () => {
   const bookList = localStorage.getItem("bookList")
     ? JSON.parse(localStorage.getItem("bookList"))
@@ -14,36 +27,42 @@ const getWishlistFromLocalDB = () => {
   return bookList;
 };
 
-const fetchWishlistBooks = () => {
-  const wishlist = getWishlistFromLocalDB();
-  const booklist = getBookFromLocalDB();
+// Get Wishlist Data
+const fetchWishlistBooks = async () => {
+  
+    const wishlistBooks = document.getElementById("book-card-row");
+    wishlistBooks.innerHTML = ""; 
 
-  //   const wishlistBooks = document.getElementById("wishlist-books");
-  //   wishlistBooks.innerHTML = ""; // Clear previous list
+    const wishlist = await getWishlistFromLocalDB(); 
+    
+    if (wishlist.length === 0) {
+      wishlistBooks.innerHTML = "<p>No books in wishlist.</p>";
+      return;
+    }
+    
+    
+    const ids = wishlist.join(',');
+    console.log(ids);
 
-  //   if (wishlist.length === 0) {
-  //     wishlistBooks.innerHTML = "<p>No books in wishlist.</p>";
-  //     return;
-  //   }
 
-  //   wishlist.forEach((bookId) => {
-  //     fetch(`${API_URL}/${bookId}`)
-  //       .then((response) => response.json())
-  //       .then((book) => {
-  //         displayWishlistBook(book);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching wishlist book:", error);
-  //       });
-  //   });
-
-  const wishListBooks = booklist?.results?.filter((item) =>
-    wishlist?.includes(item?.id)
-  );
-  console.log(wishListBooks);
-  displayBooks(wishListBooks);
+    try {
+      showLoader();
+      
+      const response = await fetch(`${API_URL}?ids=${ids}`);
+      const books = await response.json();
+      hideLoader();
+      
+      displayBooks(books?.results); 
+    } catch (error) {
+      console.error(`Error fetching books with IDs :`, error);
+      
+    }
+  
 };
 
+fetchWishlistBooks();
+
+// Display books
 const displayBooks = (books) => {
   const bookList = document.getElementById("book-card-row");
   bookList.innerHTML = "";
@@ -66,7 +85,7 @@ const displayBooks = (books) => {
     bookDiv.classList.add("col-lg-3", "col-md-4", "col-sm-6", "col-12");
 
     bookDiv.innerHTML = `
-          <div class="card book-card shadow h-100">
+          <div class="card book-card shadow h-100 ">
                 <div class="card-body text-center">
                   <div class="card-img mb-3">
                     <img
@@ -101,6 +120,7 @@ const displayBooks = (books) => {
   });
 };
 
+// Toggle Wishlist
 const toggleWishlist = (bookId) => {
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
   if (wishlist.includes(bookId)) {
@@ -109,19 +129,20 @@ const toggleWishlist = (bookId) => {
     wishlist.push(bookId);
   }
   localStorage.setItem("wishlist", JSON.stringify(wishlist));
-  fetchWishlistBooks(); // Re-render the books with updated wishlist status
+  fetchWishlistBooks(); 
 };
 
 const removeFromWishlist = (bookId) => {
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
   wishlist = wishlist.filter((id) => id !== bookId);
   localStorage.setItem("wishlist", JSON.stringify(wishlist));
-  fetchWishlistBooks(); // Re-fetch wishlist after removal
+  fetchWishlistBooks(); 
 };
 
+// Check if it is in wishlist or not
 const isInWishlist = (bookId) => {
   const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
   return wishlist.includes(bookId);
 };
 
-fetchWishlistBooks();
+

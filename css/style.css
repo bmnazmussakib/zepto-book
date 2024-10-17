@@ -2718,6 +2718,58 @@ img {
   background-color: #ff8008;
 }
 
+.navbar {
+  background-color: #333;
+}
+.navbar .navbar-brand {
+  color: #ff8008;
+}
+.navbar .navbar-nav {
+  gap: 20px;
+}
+.navbar .navbar-nav .nav-item .nav-link {
+  color: #ffffff;
+  position: relative;
+  padding: 3px 0;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.navbar .navbar-nav .nav-item .nav-link::after {
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: #ffffff;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.5s;
+}
+.navbar .navbar-nav .nav-item .nav-link.active {
+  color: #ff8008;
+}
+.navbar .navbar-nav .nav-item .nav-link:hover {
+  color: #ff8008;
+}
+.navbar .navbar-nav .nav-item .nav-link:hover::after {
+  width: 100%;
+  background-color: #ff8008;
+}
+
+.search-filter-main .content {
+  display: flex;
+  gap: 20px;
+}
+.search-filter-main .content .search-bar {
+  flex-basis: 80%;
+}
+.search-filter-main .content .form-select {
+  flex-basis: 20%;
+}
+
+.all-books {
+  min-height: 350px;
+}
 .all-books .book-card .card-body {
   position: relative;
 }
@@ -2764,7 +2816,7 @@ img {
 }
 .book-details-wrapper .book-information .info-list .nav-item .nav-link {
   padding: 0;
-  color: #292929;
+  color: #333;
   text-transform: capitalize;
   font-size: 14px;
   font-weight: normal;
@@ -2782,4 +2834,35 @@ img {
 .book-details-wrapper .book-information .description p span {
   color: #ff8008;
   font-weight: 600;
+}
+.loader-wrapper {
+  /* HTML: <div class="loader"></div> */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* HTML: <div class="loader"></div> */
+}
+.loader-wrapper .loader {
+  --c: no-repeat linear-gradient(#ff8008 0 0);
+  background: var(--c), var(--c), var(--c), var(--c), var(--c), var(--c), var(--c), var(--c), var(--c);
+  background-size: 16px 16px;
+  animation: l32-1 1s infinite, l32-2 1s infinite;
+}
+@keyframes l32-1 {
+  0%, 100% {
+    width: 45px;
+    height: 45px;
+  }
+  35%, 65% {
+    width: 65px;
+    height: 65px;
+  }
+}
+@keyframes l32-2 {
+  0%, 40% {
+    background-position: 0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0, 50% 0, 50% 50%;
+  }
+  60%, 100% {
+    background-position: 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0, 50% 0, 0 0, 50% 50%;
+  }
 }/*# sourceMappingURL=style.css.map */

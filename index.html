@@ -17,13 +17,14 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <!-- Navbar Starts Here -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
+    <nav class="navbar navbar-expand-lg shadow fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Zepto Book</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -38,20 +39,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/">Home</a>
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="wishlist.html">Wishlist</a>
+              <a class="nav-link" href="wishlist.html">Wishlist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
     <!-- Navbar Ends Here -->
-     
 
-    <!-- Search Starts Here -->
-    <section class="search-filter-main pt-40 pb-40">
+    <!-- Search and Filter Starts Here -->
+    <section class="search-filter-main pt-100 pb-40">
       <div class="container">
         <div class="content">
           <div class="search-bar">
@@ -60,14 +66,16 @@
               class="form-control"
               id="search-bar"
               placeholder="Search by title..."
-              oninput="handleSearch(event)"
             />
           </div>
+          <select id="genre-select"  class="form-select" aria-label="Default select example">
+            <option value="">Select a Genre</option>
+          </select>
         </div>
       </div>
     </section>
-    <!-- Search Ends Here -->
-     
+
+    <!-- Search and Filter Ends Here -->
 
     <!-- Book List Starts Here -->
     <section class="all-books pt-40 pb-40">
@@ -102,7 +110,27 @@
       </div>
     </section>
     <!-- Book List Ends Here -->
-     
+
+
+
+    <!-- Pagination Starts Here -->
+    <section class="pagination-wrapper d-flex justify-content-center  pb-40">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination" id="pagination-controls">
+          <li id="prev-page" class="page-item">
+            <a class="page-link" href="#">Previous</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" id="current-page" href="#">1</a>
+          </li>
+          <li id="next-page" class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+    <!-- Pagination Ends Here -->
+
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
