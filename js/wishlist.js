@@ -44,13 +44,16 @@ const fetchWishlistBooks = async () => {
     const ids = wishlist.join(',');
     console.log(ids);
 
-
+    const navbar = document.getElementById('navbar')
     try {
       showLoader();
       
       const response = await fetch(`${API_URL}?ids=${ids}`);
       const books = await response.json();
       hideLoader();
+      if (books?.results?.length > 1) {
+        navbar.classList.remove("d-none")
+      } 
       
       displayBooks(books?.results); 
     } catch (error) {

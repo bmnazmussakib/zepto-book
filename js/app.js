@@ -34,12 +34,25 @@ function hideLoader() {
 
 // Get All Books Data
 const fetchBooks = async (page = 1) => {
+  const pagination = document.getElementById('pagination')
+  const search = document.getElementById('search-filter-main')
+  const navbar = document.getElementById('navbar')
   try {
     showLoader();
     const response = await fetch(`${API_URL}?page=${page}`);
     const data = await response.json();
     hideLoader();
-    // storeBookToLocalDB(data);
+    if (data?.results?.length > 1) {
+      pagination.classList.remove("d-none")
+      search.classList.remove("d-none")
+      navbar.classList.remove("d-none")
+    } 
+
+    // else {
+    //   pagination.classList.add("d-block")
+    //   search.classList.add("d-block")
+    // }
+    
     displayBooks(data.results);
   } catch (error) {
     console.error("Error fetching books:", error);

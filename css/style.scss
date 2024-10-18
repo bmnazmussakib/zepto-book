@@ -4,17 +4,72 @@
 @import "./partials/mixin";
 @import "./partials/variable";
 
-
-.navbar{
+.navbar {
   background-color: $black;
   padding: 15px 0;
-  .navbar-brand{
+  .navbar-brand {
     color: $primary-color;
   }
-  .navbar-nav{
+  .offcanvas {
+    width: 250px;
+    @media (max-width: 991px) {
+      padding: 20px;
+
+      .navbar-nav {
+        gap: unset;
+        .nav-item {
+          .nav-link {
+            color: $black;
+            position: relative;
+            padding: 3px 0;
+            font-size: 15px;
+            text-transform: capitalize;
+    
+            &::after {
+              content: "";
+            }
+    
+            &.active {
+              // font-weight: 600;
+              color: $primary-color;
+              // &::after {
+              //   position: absolute;
+              //   content: '';
+              //   width: 100%;
+              //   height: 2px;
+              //   background-color: $white;
+              //   bottom: 0;
+              //   left: 50%;
+              //   transform: translateX(-50%);
+              // }
+            }
+    
+            &:hover {
+              color: $primary-color;
+              &::after {
+                width: 100%;
+                background-color: transparent;
+              }
+            }
+          }
+        }
+      }
+    }
+    .close-btn {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      background-color: $white;
+      left: -40px;
+      top: 0;
+      border-radius: 0;
+      border: 0;
+    }
+  }
+  .navbar-nav {
     gap: 20px;
-    .nav-item{
-      .nav-link{
+    .nav-item {
+      .nav-link {
         color: $white;
         position: relative;
         padding: 3px 0;
@@ -23,7 +78,7 @@
 
         &::after {
           position: absolute;
-          content: '';
+          content: "";
           width: 0%;
           height: 2px;
           background-color: $white;
@@ -58,17 +113,39 @@
       }
     }
   }
+  .toggle-btn{
+    color: $primary-color;
+    font-size: 24px;
+    padding: 0;
+
+    @media (min-width: 992px) {
+      display: none;
+    }
+  }
 }
 
-.search-filter-main{
-  .content{
+.search-filter-main {
+  .content {
     display: flex;
     gap: 20px;
-    .search-bar{
+    .search-bar {
       flex-basis: 80%;
     }
-    .form-select{
+    .form-select {
       flex-basis: 20%;
+    }
+
+    @media (max-width: 767px) {
+      .search-bar {
+        flex-basis: 60%;
+      }
+      .form-select {
+        flex-basis: 40%;
+      }
+    }
+
+    @media (max-width: 414px) {
+      flex-direction: column;
     }
   }
 }
@@ -80,6 +157,7 @@
   align-items: center;
   justify-content: center;
   .book-card {
+    transition: 0.3s;
     .card-body {
       position: relative;
       .card-img {
@@ -98,6 +176,7 @@
       .card-text {
         font-size: 14px;
         color: $gray;
+        line-height: 1.5;
       }
 
       .wishlist-icon {
@@ -119,23 +198,31 @@
       background-color: $white;
       padding: 0 0 1.5rem 0;
     }
+
+    &:hover {
+      transform: translateY(-10px);
+    }
   }
 }
 
 .book-details-wrapper {
-  
   min-height: 85vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 575px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   .book-details {
-
   }
 
   .book-img {
     img {
-      width: 300px;
+      @media (min-width: 768px) {
+        width: 300px;
+      }
     }
   }
   .book-information {
@@ -184,6 +271,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 80vh;
 
   /* HTML: <div class="loader"></div> */
   .loader {
@@ -219,9 +307,9 @@
   }
 }
 
-.pagination-wrapper{
+.pagination-wrapper {
   .pagination {
-    li{
+    li {
       a {
         color: $black;
         &:hover {

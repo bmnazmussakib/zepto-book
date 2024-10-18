@@ -22,11 +22,15 @@ const getBookFromLocalDB = () => {
 
 // Get Book Details Data
 const fetchBookDetails = async () => {
+  const navbar = document.getElementById('navbar')
   try {
     showLoader()
     const response = await fetch(`${API_URL}/${bookId}`);
     const book = await response.json();
     hideLoader()
+    if (book) {
+      navbar.classList.remove("d-none")
+    } 
     displayBookDetails(book);
   } catch (error) {
     console.error('Error fetching book details from API:', error);
@@ -55,7 +59,7 @@ const displayBookDetails = async (item) => {
     const bookDetails = document.getElementById("book-details");
     bookDetails.innerHTML = `
       <div class="row g-4">
-              <div class="col-lg-4">
+              <div class="col-md-4 col-sm-5">
                 <div class="book-img mb-3">
                   <img
                     src="${formats["image/jpeg"] || 'placeholder.jpg'}"
@@ -63,7 +67,7 @@ const displayBookDetails = async (item) => {
                     alt="..."/>
                 </div>
               </div>
-              <div class="col-lg-8">
+              <div class="col-md-8 col-sm-7">
                 <div class="book-information">
                   <h4 class="book-title">${title}</h4>
 
